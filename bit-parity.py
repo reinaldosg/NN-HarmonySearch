@@ -135,7 +135,7 @@ def predict():
     for hid in range(NN.HIDDEN_NEURONS):
         sum = 0
         for inp in range(NN.INPUT_NEURONS):
-            sum += inputs[inp] * wih[hid][inp]
+            sum += inputs[inp] * wih[inp][hid]
         sum += wih[NN.INPUT_NEURONS][hid] #bias
         hidden[hid] = sigmoid(sum)
 

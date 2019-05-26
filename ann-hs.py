@@ -3,6 +3,10 @@ import math
 import random
 import matplotlib.pyplot as plt
 
+trainInput  = np.array([[0.0,0.0],[0.0,1.0],[1.0,0.0],[1.0,1.0]
+                ],dtype=float)
+trainOutput = np.array([[0.0],[1.0],[1.0],[0.0]
+                ],dtype=float)
 class NN:
     INPUT_NEURONS   = 2
     HIDDEN_NEURONS  = 2
@@ -16,7 +20,7 @@ class HS:
     UPPER   = 5.0
     LOWER   = -5.0
     B       = (UPPER-LOWER)/10*random.uniform(0,2)
-    PRACTICE= 200
+    PRACTICE= 2000
     ERR_THRES   = 0.001
     
 #initialize all the variable needed for ANN
@@ -130,7 +134,7 @@ def predict():
     for hid in range(NN.HIDDEN_NEURONS):
         sum = 0
         for inp in range(NN.INPUT_NEURONS):
-            sum += inputs[inp] * wih[hid][inp]
+            sum += inputs[inp] * wih[inp][hid]
         sum += wih[NN.INPUT_NEURONS][hid] #bias
         hidden[hid] = sigmoid(sum)
 
@@ -163,10 +167,6 @@ def MLP_train():
 #End here ---------- MLP Function
 #=================================================
 
-trainInput  = np.array([[0.0,0.0],[0.0,1.0],[1.0,0.0],[1.0,1.0]
-                ],dtype=float)
-trainOutput = np.array([[0.0],[1.0],[1.0],[0.0]
-                ],dtype=float)
 
 #define the plot first
 plt.ion()
