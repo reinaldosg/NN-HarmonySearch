@@ -17,8 +17,8 @@ class HS:
     HM    = 10
     HMCR    = 0.7
     PAR     = 0.3
-    UPPER   = 5.0
-    LOWER   = -5.0
+    UPPER   = 10.0
+    LOWER   = -10.0
     B       = (UPPER-LOWER)/10*random.uniform(0,2)
     PRACTICE= 2000
     ERR_THRES   = 0.001
@@ -66,7 +66,7 @@ def mse():
     er = 0.0
     for i in range(NN.OUTPUT_NEURONS):
         er += pow((target[i]-actual[i]),2)
-    error1 = 1/NN.OUTPUT_NEURONS*er
+    error1 = er/NN.OUTPUT_NEURONS
     return error1
 
 #this is HARMONY!
@@ -196,5 +196,5 @@ print(wih)
 print('-----------')
 print('who')
 print(who)
-inputs =[0.0,0.0]
+inputs =[1.0,0.0]
 print(predict())

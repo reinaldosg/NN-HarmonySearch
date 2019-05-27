@@ -3,40 +3,101 @@ import math
 import random
 import matplotlib.pyplot as plt
 
-trainInput  = np.array([[0.0,0.0,0.0],[0.0,0.0,1.0],[0.0,1.0,0.0],[0.0,1.0,1.0],[1.0,0.0,0.0]
-                        ,[1.0,0.0,1.0],[1.0,1.0,0.0],[1.0,1.0,1.0]
+trainInput  = np.array([[0.0,0.0,0.0,0.0,0.0],
+                    [0.0,0.0,0.0,0.0,1.0],
+                    [0.0,0.0,0.0,1.0,0.0],
+                    [0.0,0.0,0.0,1.0,1.0],
+                    [0.0,0.0,1.0,0.0,0.0],
+                    [0.0,0.0,1.0,0.0,1.0],
+                    [0.0,0.0,1.0,1.0,0.0],
+                    [0.0,0.0,1.0,1.0,1.0],
+                    [0.0,1.0,0.0,0.0,0.0],
+                    [0.0,1.0,0.0,0.0,1.0],
+                    [0.0,1.0,0.0,1.0,0.0],
+                    [0.0,1.0,0.0,1.0,1.0],
+                    [0.0,1.0,1.0,0.0,0.0],
+                    [0.0,1.0,1.0,0.0,1.0],
+                    [0.0,1.0,1.0,1.0,0.0],
+                    [0.0,1.0,1.0,1.0,1.0],
+                    [1.0,0.0,0.0,0.0,0.0],
+                    [1.0,0.0,0.0,0.0,1.0],
+                    [1.0,0.0,0.0,1.0,0.0],
+                    [1.0,0.0,0.0,1.0,1.0],
+                    [1.0,0.0,1.0,0.0,0.0],
+                    [1.0,0.0,1.0,0.0,1.0],
+                    [1.0,0.0,1.0,1.0,0.0],
+                    [1.0,0.0,1.0,1.0,1.0],
+                    [1.0,1.0,0.0,0.0,0.0],
+                    [1.0,1.0,0.0,0.0,1.0],
+                    [1.0,1.0,0.0,1.0,0.0],
+                    [1.0,1.0,0.0,1.0,1.0],
+                    [1.0,1.0,1.0,0.0,0.0],
+                    [1.0,1.0,1.0,0.0,1.0],
+                    [1.0,1.0,1.0,1.0,0.0],
+                    [1.0,1.0,1.0,1.0,1.0]
                 ],dtype=float)
-trainOutput = np.array([[0.0],[1.0],[1.0],[0.0],[1.0],[0.0],[0.0],[1.0]
+trainOutput = np.array([[0.0,0.0,0.0,0.0,0.0,1.0],
+                        [0.0,0.0,0.0,0.0,1.0,0.0],
+                        [0.0,0.0,0.0,0.0,1.0,0.0],
+                        [0.0,0.0,0.0,1.0,0.0,0.0],
+                        [0.0,0.0,0.0,0.0,1.0,0.0],
+                        [0.0,0.0,0.0,1.0,0.0,0.0],
+                        [0.0,0.0,0.0,1.0,0.0,0.0],
+                        [0.0,0.0,1.0,0.0,0.0,0.0],
+                        [0.0,0.0,0.0,0.0,1.0,0.0],
+                        [0.0,0.0,0.0,1.0,0.0,0.0],
+                        [0.0,0.0,0.0,1.0,0.0,0.0],
+                        [0.0,0.0,1.0,0.0,0.0,0.0],
+                        [0.0,0.0,0.0,1.0,0.0,0.0],
+                        [0.0,0.0,1.0,0.0,0.0,0.0],
+                        [0.0,0.0,1.0,0.0,0.0,0.0],
+                        [0.0,1.0,0.0,0.0,0.0,0.0],
+                        [0.0,0.0,0.0,0.0,1.0,0.0],
+                        [0.0,0.0,0.0,1.0,0.0,0.0],
+                        [0.0,0.0,0.0,1.0,0.0,0.0],
+                        [0.0,0.0,1.0,0.0,0.0,0.0],
+                        [0.0,0.0,0.0,1.0,0.0,0.0],
+                        [0.0,0.0,1.0,0.0,0.0,0.0],
+                        [0.0,0.0,1.0,0.0,0.0,0.0],
+                        [0.0,1.0,0.0,0.0,0.0,0.0],
+                        [0.0,0.0,0.0,1.0,0.0,0.0],
+                        [0.0,0.0,1.0,0.0,0.0,0.0],
+                        [0.0,0.0,1.0,0.0,0.0,0.0],
+                        [0.0,1.0,0.0,0.0,0.0,0.0],
+                        [0.0,0.0,1.0,0.0,0.0,0.0],
+                        [0.0,1.0,0.0,0.0,0.0,0.0],
+                        [0.0,1.0,0.0,0.0,0.0,0.0],
+                        [1.0,0.0,0.0,0.0,0.0,0.0]
                 ],dtype=float)
 class NN:
-    INPUT_NEURONS   = 3
-    HIDDEN_NEURONS  = 3
-    OUTPUT_NEURONS  = 1
-    MAX_SAMPLES     = 8
+    INPUT_NEURONS   = 5
+    HIDDEN_NEURONS  = 12
+    OUTPUT_NEURONS  = 6
+    MAX_SAMPLES     = 32
 
 class HS:
-    HM    = 10
-    HMCR    = 0.7
-    PAR     = 0.3
-    UPPER   = 15.0
-    LOWER   = -15.0
-    B       = (UPPER-LOWER)/10*random.uniform(0,2)
-    PRACTICE= 2000
+    HM      = 20
+    HMCR    = 0.8
+    PAR     = 0.6
+    UPPER   = 1.0
+    LOWER   = -1.0
+    B       = (UPPER-LOWER)/10
+    PRACTICE= 1000
     ERR_THRES   = 0.001
     
 #initialize all the variable needed for ANN
-wih = np.ndarray((NN.INPUT_NEURONS+1,NN.HIDDEN_NEURONS),float) #this is input for HS
-who = np.ndarray((NN.HIDDEN_NEURONS+1,NN.OUTPUT_NEURONS),float)#this is input for HS
+wih = np.ndarray((NN.INPUT_NEURONS+1,NN.HIDDEN_NEURONS),np.float64) #this is input for HS
+who = np.ndarray((NN.HIDDEN_NEURONS+1,NN.OUTPUT_NEURONS),np.float64)#this is input for HS
 
-inputs      = np.ndarray((NN.INPUT_NEURONS),float)
-hidden      = np.ndarray((NN.HIDDEN_NEURONS,NN.OUTPUT_NEURONS),float)
-target      = np.ndarray((NN.OUTPUT_NEURONS),float)
-actual      = np.ndarray((NN.OUTPUT_NEURONS),float)
+inputs      = np.ndarray((NN.INPUT_NEURONS),np.float64)
+hidden      = np.ndarray((NN.HIDDEN_NEURONS,NN.OUTPUT_NEURONS),np.float64)
+target      = np.ndarray((NN.OUTPUT_NEURONS),np.float64)
+actual      = np.ndarray((NN.OUTPUT_NEURONS),np.float64)
 #untuk masuk ke Harmony Memory
-error       = np.ones((HS.HM,),float)
+error       = np.ones((HS.HM,),np.float64)
 
 hs_input_size   = wih.size + who.size #total neuron + bias
-harmony_memory  = np.ndarray((HS.HM,hs_input_size),float)
+harmony_memory  = np.ndarray((HS.HM,hs_input_size),np.float64)
 
 input_hidden = NN.INPUT_NEURONS * NN.HIDDEN_NEURONS
 hidden_output= NN.HIDDEN_NEURONS * NN.OUTPUT_NEURONS
@@ -45,7 +106,7 @@ hidden_output= NN.HIDDEN_NEURONS * NN.OUTPUT_NEURONS
 
 #init weight for the first time
 def assign_random():
-    vector      = np.ndarray((hs_input_size,),float)
+    vector      = np.ndarray((hs_input_size,),np.float64)
     for i in range(hs_input_size):
         vector[i] = random.uniform(HS.LOWER,HS.UPPER)
     return vector
@@ -72,7 +133,7 @@ def mse():
 
 #this is HARMONY!
 def weight_adjust():
-    xi = np.ndarray((hs_input_size,),float)
+    xi = np.ndarray((hs_input_size,),np.float64)
     for j in range(hs_input_size):
         r = random.random()
         if(r <= HS.HMCR):
@@ -82,9 +143,9 @@ def weight_adjust():
             if(rand <= HS.PAR):
                 roperator = random.randrange(0,1)
                 if(roperator == 1):
-                    xi[j] = xi[j] + HS.B
+                    xi[j] = xi[j] + HS.B*random.uniform(0,1)
                 else: 
-                    xi[j] = xi[j] - HS.B
+                    xi[j] = xi[j] - HS.B*random.uniform(0,1)
                 
                 if(xi[j] > HS.UPPER):
                     xi[j] = HS.UPPER
@@ -99,7 +160,9 @@ def weight_adjust():
         harmony_memory[index[0]] = xi
         error[index[0]] = resultxi
     # print(min(error))
-    print('min: '+ str(min(error)))
+    # print('min: '+ str(min(error)))
+    print('min: '+ str(max(error)))
+    # best, = np.where(error == min(error))
     best, = np.where(error == min(error))
     return (min(error),best)
 
@@ -197,5 +260,5 @@ print(wih)
 print('-----------')
 print('who')
 print(who)
-inputs =[0.0,0.0,1.0]
+inputs =[1.0,1.0,1.0,1.0,1.0]
 print(predict())
